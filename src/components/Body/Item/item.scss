@@ -1,0 +1,64 @@
+.item{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #E6EFED;
+    text-align: center;
+    .br{
+        border-right: 1px solid #E6EFED;
+    }
+    &_number{
+        width: 30px;
+    }
+    &_coin{
+        width: 150px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        &_block-name{
+            width: 100px;
+        }
+        &-fullname{
+            font-weight: 700;
+        }
+        &-name{
+            color: #939997;
+            font-weight: 600;
+        }
+        &_img{
+            width: 40px;
+            img{
+                width: 40px;
+            }
+        }
+    }
+    &_price{
+        width: 120px;
+            &_overlay{
+                margin: 4px 4px;
+                background-color: #EBECEC;
+                padding: 4px 6px;
+                border-radius: 4px;
+            }
+    }
+    &_vol{
+        width: 120px;
+    }
+    &_chart{
+        width: 150px;
+    }
+    &_chg{
+        width: 80px;
+        &_overlay{
+            margin: 4px 4px;
+            background-color: #EBECEC;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+        .green{
+            color: green;
+        }
+        .red{
+            color: #BF211E;
+        }
+    }
+}

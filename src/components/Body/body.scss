@@ -1,0 +1,32 @@
+.body{
+    background-color: #fff;
+    margin-top: -20px;
+    border-radius: 6px;
+    padding: 15px;
+    &__up{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+    }
+    hr{
+        background-color: #5EB63A;
+    }
+    .number{
+        width: 30px;
+    }
+    .coin{
+        width: 150px;
+    }
+    .price{
+        width: 120px;
+    }
+    .vol{
+        width: 120px;
+    }
+    .chart{
+        width: 150px;
+    }
+    .chg{
+        width: 80px;
+    }
+}
