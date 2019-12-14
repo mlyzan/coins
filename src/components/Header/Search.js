@@ -4,13 +4,15 @@ import {connect} from 'react-redux';
 import {addSearchTextAC, addNewAllCoinsAC} from '../../redux/action-creators';
 import search from '../../img/search.svg';
 class Search extends React.Component{
-    filterItems = (e)=> {
-            let inputValue = e.target.value.trim().toUpperCase();
-           this.props.addText(inputValue);
-           let newAllCoins = this.props.allCoins.filter((e)=>{
-                return  e.CoinInfo.Name.indexOf(inputValue) >= 0
-            });
-               this.props.addNewAllCoins(newAllCoins)
+    filterItems = async (e)=> {
+           if(this.props.allCoins){
+                let inputValue = e.target.value.trim().toUpperCase();
+                await this.props.addText(inputValue);
+                let newAllCoins = await this.props.allCoins.filter((e)=>{
+                    return  e.CoinInfo.Name.indexOf(this.props.text) >= 0
+                });
+                await this.props.addNewAllCoins(newAllCoins)
+           }
     }
     render(){
         return(

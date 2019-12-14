@@ -3,7 +3,7 @@ import './header.scss';
 import Search from './Search';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {nullSearchAC} from '../../redux/action-creators';
+import {nullSearchAC, setFalseErrorAC} from '../../redux/action-creators';
 class Header extends React.Component{
     nullSearch = ()=>{
         this.props.nullSearch()
@@ -11,7 +11,7 @@ class Header extends React.Component{
    render (){
     return(
         <header className="header">
-            <Link to="/" className="header_link"><h1 className="header_title">Coins List</h1></Link>
+            <Link to="/" className="header_link" onClick={()=>this.nullSearch()}><h1 className="header_title">Coins List</h1></Link>
             <div className="header__coins">
             <Link to="/usd" className="header_link"><div onClick={()=>this.nullSearch()} className="header__coins_usd">USD</div></Link>
             <Link to="/eur" className="header_link"><div onClick={()=>this.nullSearch()} className="header__coins_eur">EUR</div></Link>
@@ -29,7 +29,10 @@ let mapStateToProps = ()=>{
 }
 let mapDispatchToProps = (dispatch)=>{
     return{
-        nullSearch: ()=> dispatch(nullSearchAC())
+        nullSearch: ()=> {
+            dispatch(nullSearchAC());
+            dispatch(setFalseErrorAC())
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Header);

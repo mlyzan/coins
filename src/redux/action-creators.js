@@ -21,3 +21,13 @@ export const nullSearchAC = ()=>{
         type: "NULL_SEARCH"
     }
 }
+export const setErrorAC = ()=>{
+    return{
+        type: "SET_ERROR"
+    }
+}
+export const setFalseErrorAC = ()=>{
+    return{
+        type: "SET_FALSE_ERROR"
+    }
+}

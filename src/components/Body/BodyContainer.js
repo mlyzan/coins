@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Item from './Item/Item';
 import Body from './Body';
 import Preloader from '../Preloader/Preloader';
+import NotFound from '../Header/NotFound/NotFound';
+import Error from '../Error/Error';
 class BodyContainer extends React.Component {
     whatIsCurrent = (e)=>{
         if(e.DISPLAY.USD){
@@ -15,12 +17,12 @@ class BodyContainer extends React.Component {
         }
     }
     renderCoinsList = ()=>{
-        if(!this.props.coins){
+        if(!this.props.coins && !this.props.error){
             return (
                 <Preloader/>
             )
         }
-        else if(!this.props.searchCoins) {
+        else if(!this.props.searchCoins && !this.props.error) {
             return  this.props.coins.map((e,i)=>{
                 let {FullName, Name, ImageUrl} = e.CoinInfo;
                 let {PRICE, TOTALVOLUME24HTO, TOTALTOPTIERVOLUME24HTO, 
@@ -36,8 +38,11 @@ class BodyContainer extends React.Component {
                       </span>
                   )
               })
-        }
-        else{
+        } else if(this.props.error){
+            return <Error/>
+        }else if(this.props.searchCoins.length < 1 && this.props.text && !this.props.error){
+            return <NotFound/>
+        }else{
             return  this.props.searchCoins.map((e,i)=>{
                 let {FullName, Name, ImageUrl} = e.CoinInfo;
                 let {PRICE, TOTALVOLUME24HTO, TOTALTOPTIERVOLUME24HTO, CHANGEPCT24HOUR, MKTCAP, VOLUME24HOURTO}= this.whatIsCurrent(e);
@@ -67,7 +72,9 @@ class BodyContainer extends React.Component {
 }
 let mapStateToProps = (state)=>{
     return{
-        searchCoins: state.search.newAllCoins
+        searchCoins: state.search.newAllCoins,
+        text: state.search.searchText, 
+        error: state.coins.error 
     }
 }
 export default connect(mapStateToProps)(BodyContainer);
